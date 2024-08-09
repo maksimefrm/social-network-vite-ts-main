@@ -33,7 +33,7 @@ export const LoginPage = () => {
         </div>
       </div> */}
       <RegistrationInfo 
-      linkText={"Зарегистрироваться"} 
+      linkText={<Link to="/registration">"Зарегистрироваться"</Link>} 
       hasAccountText={"У вас нет аккаунта?"} 
       authWithText={"Войти с помощью:"}/>
     </div>

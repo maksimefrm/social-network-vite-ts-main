@@ -8,6 +8,8 @@ export const RegistrationPage = () => {
         <form action="#">
             <Input type={"text"} placeholder={"Имя"}/>
             <Input type={"text"} placeholder={"Фамилия"}/>
+            <Input type={"text"} placeholder={"Город"}/>
+            <Input type={"email"} placeholder={"Email"}/>
             <Input type={"tel"} placeholder={"Номер телефона"}/>
             <Input type={"password"} placeholder={"Придумайте пароль"}/>
             <Link to="/">
