@@ -1,5 +1,10 @@
+import { ReactNode } from "react";
 
-const Span = ({ children }) => {
+interface ISpan {
+    children: ReactNode
+}
+
+const Span = ({ children }: ISpan) => {
     return (
         <span>{children}</span>
     )

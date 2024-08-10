@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
-import { Span } from "../UI";
+import { Paragraph, Span } from "../UI";
 
-const RegistrationInfo = ({ linkText, hasAccountText, authWithText }) => {
+interface IREgistrationInfo {
+    linkText: string,
+    hasAccountText: string,
+    authWithText: string,
+}
+
+const RegistrationInfo = ({ linkText, hasAccountText, authWithText }:IREgistrationInfo) => {
+
     return(
         <div className="registration">
             <Span>
                 {hasAccountText} <Link to="/registration">{linkText}</Link>
             </Span>
-            <p>{authWithText}</p>
+            <Paragraph>{authWithText}</Paragraph>
             <div className="icons-wrapper">
                 <Link className="reg__link google-link" to="#">
                     <img src="./img/icons/google.svg" alt="Google" />
@@ -25,4 +32,5 @@ const RegistrationInfo = ({ linkText, hasAccountText, authWithText }) => {
         </div>
     )
 }
+
 export default RegistrationInfo;
