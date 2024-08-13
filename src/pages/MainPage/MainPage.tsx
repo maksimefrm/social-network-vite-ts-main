@@ -1,4 +1,4 @@
-import { Navbar, ListLeftSide, WhatsNew, History, Post, PostRepost, ListRightSide, MusicBlock } from "../../components/UI";
+import { Navbar, List, WhatsNew, History, Post, PostRepost } from "../../components/UI";
 import "./MainPage.scss";
 
 export const MainPage = () => {
@@ -6,7 +6,7 @@ export const MainPage = () => {
     <div className="MainPage">
       <aside className="LeftSide">
         <Navbar/>
-        <ListLeftSide/>
+        <List listType="subscribes"/>
       </aside>
       <main className="Main">
         <WhatsNew/>
@@ -15,8 +15,8 @@ export const MainPage = () => {
         <PostRepost/>
       </main>
       <aside className="RightSide">
-        <ListRightSide/>
-        <MusicBlock/>
+        <List listType="closeFriends"/>
+        <List listType={"music"}/>  
       </aside>
     </div>
   );
