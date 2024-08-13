@@ -10,6 +10,9 @@ import WhatsNew from "../WhatsNew/WhatsNew";
 import History from "../History/History";
 import Post from "../Post/Post";
 import PostRepost from "../PostRepost/PostRepost";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
+import UserPosts from "../UserPosts/UserPosts"
+import Bio from "../Bio/Bio";
 
 export { 
     Input, 
@@ -24,4 +27,7 @@ export {
     History,
     Post,
     PostRepost,
+    ProfileHeader,
+    UserPosts,
+    Bio
  };

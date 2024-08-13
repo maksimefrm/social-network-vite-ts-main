@@ -124,5 +124,52 @@ export const ListData = {
         secondaryText: "Glass Animals",
         plus: true
       },
+    ],
+    friends: [
+      {
+        imgUrl: "./img/users/aleksandr-maykov.jpeg",
+        alt: "Friends",
+        text: "Александр"
+      },
+      {
+        imgUrl: "./img/users/sofia-kodra.jpeg",
+        alt: "Friends",
+        text: "Софья"
+      },
+      {
+        imgUrl: "./img/users/andrey-kashirskiy.jpeg",
+        alt: "Friends",
+        text: "Андрей"
+      },
+      {
+        imgUrl: "./img/users/darya-gertner.jpeg",
+        alt: "Friends",
+        text: "Дарья"
+      },
+      {
+        imgUrl: "./img/users/denis-frolov.jpeg",
+        alt: "Friends",
+        text: "Денис"
+      },
+      {
+        imgUrl: "./img/users/mark-krahmalev.jpeg",
+        alt: "Friends",
+        text: "Марк"
+      },
+      {
+        imgUrl: "./img/users/katarina-fisher.jpeg",
+        alt: "Friends",
+        text: "Екатерина"
+      },
+      {
+        imgUrl: "./img/users/viktoria.jpeg",
+        alt: "Friends",
+        text: "Виктория"
+      },
+      {
+        imgUrl: "./img/users/gleb.jpeg",
+        alt: "Friends",
+        text: "Глеб"
+      },
     ]
 }
