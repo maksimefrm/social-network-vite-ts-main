@@ -1,10 +1,12 @@
 import FriendsBlock from "../../components/FriendsBlock/FriendsBlock";
 import { Navbar, List, ProfileHeader, PostRepost, Post, WhatsNew, UserPosts, Bio } from "../../components/UI";
-import "./ProfilePage.scss";
+import { Header } from "../../components/UI/Header/Header";
+import { SCProfilePage } from "./ProfilePage.styled";
 
 export const ProfilePage = () => {
   return (
-    <div className="ProfilePage">
+    <SCProfilePage>
+      <Header/>
       <aside className="LeftSide">
         <Navbar/>
         <List listType="subscribes"/>
@@ -21,6 +23,6 @@ export const ProfilePage = () => {
         <FriendsBlock/>
         <List listType={"music"} />
       </aside>
-    </div>
+    </SCProfilePage>
   );
 };

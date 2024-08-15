@@ -9,7 +9,9 @@ const FriendsBlock = () => {
         <div className="FriendsBlock">
         <div className="Friends__title">
           <Heading variant={"h2"} text={"Друзья"} />
-          <span className="count">130</span>
+          <span className="count">
+            {friends.length}
+          </span>
         </div>
         <div className="Friends__wrapper">
         {friends && friends.map((userElem) => (

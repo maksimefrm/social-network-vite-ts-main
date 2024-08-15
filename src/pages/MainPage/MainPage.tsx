@@ -1,9 +1,11 @@
 import { Navbar, List, WhatsNew, History, Post, PostRepost } from "../../components/UI";
-import "./MainPage.scss";
+import { Header } from "../../components/UI/Header/Header";
+import { SCMainPage } from "./MainPage.styled";
 
 export const MainPage = () => {
   return (
-    <div className="MainPage">
+    <SCMainPage>
+      <Header/>
       <aside className="LeftSide">
         <Navbar/>
         <List listType="subscribes"/>
@@ -18,6 +20,6 @@ export const MainPage = () => {
         <List listType="closeFriends"/>
         <List listType={"music"}/>  
       </aside>
-    </div>
+    </SCMainPage>
   );
 };

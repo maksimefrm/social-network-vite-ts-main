@@ -1,7 +1,10 @@
-.LoginPage {
-  box-shadow: 0 0 10px var(--light-gray);
+import styled from "styled-components"
+
+export const SCRegistrationPage = styled.div`
+
+box-shadow: 0 0 10px ${(props) => props.theme.colors.lightGray};
   border-radius: 20px;
-  background-color: var(--elems-bgc);
+  background-color: ${(props) => props.theme.colors.elemsBgc};
   margin: 0 auto;
   width: 80%;
   max-width: 500px;
@@ -16,7 +19,7 @@
     display: block;
     width: 100%;
     margin-bottom: 20px;
-    border: 2px solid var(--disabled-bgc);
+    border: 2px solid ${(props) => props.theme.colors.disabledBgc};
     background-color: transparent;
 
     &:last-child {
@@ -24,7 +27,7 @@
     }
 
     &:is(:hover, :focus) {
-      border-color: var(--prime-color);
+      border-color: ${(props) => props.theme.colors.primeColor};
     }
   }
 
@@ -38,13 +41,12 @@
     width: 100%;
     text-align: right;
     text-decoration: none;
-    color: var(--gray);
+    color: ${(props) => props.theme.colors.gray};
 
     &:hover {
       text-decoration: underline;
     }
   }
-}
 
 @media (max-width: 530px) {
   .LoginPage {
@@ -55,7 +57,7 @@
 .registration {
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid var(--light-gray);
+  border-top: 1px solid ${(props) => props.theme.colors.lightGray};
 
   span {
     display: inline-block;
@@ -64,7 +66,7 @@
 
     a {
       display: inline;
-      color: var(--prime-color);
+      color: ${(props) => props.theme.colors.primeColor};
     }
   }
 
@@ -101,3 +103,5 @@
     object-fit: cover;
   }
 }
+ 
+`
