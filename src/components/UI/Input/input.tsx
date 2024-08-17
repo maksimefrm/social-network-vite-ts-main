@@ -10,7 +10,7 @@ const Input = ({ type, placeholder, isError, errorMessage, ...props }: IInputPro
         <>
             <input type={type} placeholder={placeholder} {...props}/>
             {isError && (
-                <span style={{ color: "red", fontWeight: 600, letterSpacing: "5px" }}>{errorMessage}</span>
+                <span style={{ color: "red", fontWeight: 600, letterSpacing: "4px" }}>{errorMessage}*</span>
         )}
         </>
     );

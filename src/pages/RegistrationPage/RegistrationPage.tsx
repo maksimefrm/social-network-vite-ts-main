@@ -5,12 +5,12 @@ import { SCRegistrationPage } from "./RegistrartionPage.styled";
 export const RegistrationPage = () => {
     return(
         <SCRegistrationPage>
-        <Heading variant={"h1"} text={"Регистрация"}/>
-        <RegisterForm/>
-        <RegistrationInfo 
-        linkText={"Войти"} 
-        hasAccountText={"У вас есть аккаунт?"} 
-        authWithText={"Зарегистрироваться с помощью:"}/>
-      </SCRegistrationPage>
+            <Heading variant={"h1"} text={"Регистрация"}/>
+            <RegisterForm/>
+            <RegistrationInfo 
+                linkText={"Войти"} 
+                hasAccountText={"У вас есть аккаунт?"} 
+                authWithText={"Зарегистрироваться с помощью:"}/>
+        </SCRegistrationPage>
     )
 }
