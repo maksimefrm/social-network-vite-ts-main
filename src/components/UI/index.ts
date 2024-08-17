@@ -1,4 +1,4 @@
-import Input from "./Input/input";
+import Input from "./Input/Input";
 import Button from "./Button/Button";
 import Heading from "../typography/Heading/Heading";
 import RegistrationInfo from "../RegistrationInfo/RegistrationInfo";

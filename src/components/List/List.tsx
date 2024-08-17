@@ -19,13 +19,13 @@ const renderList = () => {
           <Heading variant={"h2"} text={"Подписки"}/>
           <span className="count">{subscribes ? subscribes.length : ""}</span>
         </div>
-        {subscribes && subscribes.map((userElem) => (
+        {subscribes && subscribes.map((musicItem) => (
           <ListItem 
-            imgUrl={userElem.imgUrl}
-            alt={userElem.alt}
-            mainText={userElem.mainText}
-            secondaryText={userElem.secondaryText}
-            badgeNumber={userElem.badgeNumber}/>
+            imgUrl={musicItem.imgUrl}
+            alt={musicItem.alt}
+            mainText={musicItem.mainText}
+            secondaryText={musicItem.secondaryText}
+            badgeNumber={musicItem.badgeNumber}/>
         ))}
       </div>
       )
@@ -38,14 +38,14 @@ const renderList = () => {
             {closeFriends ? closeFriends.length : ""}
           </span>
         </div>
-        {closeFriends && closeFriends.map((userElem) => (
+        {closeFriends && closeFriends.map((musicItem) => (
           <ListItem 
             // isOnline={closeFriends.isOnline}
-            imgUrl={userElem.imgUrl}
-            alt={userElem.alt}
-            mainText={userElem.mainText}
-            secondaryText={userElem.secondaryText}
-            badgeNumber={userElem.badgeNumber}/>
+            imgUrl={musicItem.imgUrl}
+            alt={musicItem.alt}
+            mainText={musicItem.mainText}
+            secondaryText={musicItem.secondaryText}
+            badgeNumber={musicItem.badgeNumber}/>
         ))}
       </div>
       )
@@ -58,13 +58,13 @@ const renderList = () => {
             {music ? music.length : ""}
           </span>
         </div>
-        {music && music.map((userElem) => (
+        {music && music.map((musicItem) => (
           <MusicItem 
-            imgUrl={userElem.imgUrl}
-            alt={userElem.alt}
-            mainText={userElem.mainText}
-            secondaryText={userElem.secondaryText}
-            plus={userElem.plus}/>
+            imgUrl={musicItem.imgUrl}
+            alt={musicItem.alt}
+            mainText={musicItem.mainText}
+            secondaryText={musicItem.secondaryText}
+            plus={musicItem.plus}/>
         ))}
         </div>
       )
