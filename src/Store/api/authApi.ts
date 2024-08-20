@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { IGetUserResponce } from './types'
-import { IRegisterUser } from './types'
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -16,7 +15,7 @@ export const authApi = createApi({
         body: loginData,
       }),
     }),
-    registerUser: builder.mutation<IRegisterUser, any>({
+    registerUser: builder.mutation<any, any>({
       query: (registerData) => ({
         url: "/registration",
         method: "POST",
