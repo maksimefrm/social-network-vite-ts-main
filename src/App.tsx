@@ -5,6 +5,8 @@ import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/theme";
+import { Provider } from "react-redux";
+import { store } from "./Store/Store";
 
 
 const router = createBrowserRouter([
@@ -28,13 +30,15 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <Provider store={store}>
+          <ThemeProvider theme={theme}>
       <div className="App">
         <div className="container">
           <RouterProvider router={router}/>
         </div>
       </div>
     </ThemeProvider>
+    </Provider>
   );
 }
 
