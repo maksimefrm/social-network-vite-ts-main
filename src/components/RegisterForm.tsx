@@ -3,13 +3,13 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Button, Input } from "./UI"
 import { useNavigate } from "react-router-dom"
+import { useLoginUserMutation, useRegisterUserMutation } from "../Store/api/authApi"
 
 interface IRegisterForm {
     name: string,
-    surname: string,
-    city: string,
+    userCity: string,
     email: string,
-    tel: string,
+    phoneNumber: string,
     password: string
 }
 
@@ -17,8 +17,8 @@ const schema = yup
   .object({
     name: yup.string().required("Обязательное поле"),
     surname: yup.string().required("Обязательное поле"),
-    city: yup.string().required("Обязательное поле"),
-    tel: yup.string().required("Обязательное поле"),
+    userCity: yup.string().required("Обязательное поле"),
+    phoneNumber: yup.string().required("Обязательное поле"),
     email: yup.string().email("Введите почту в правильном формате").required("Обязательное поле"),
     password: yup.string().required("Обязательное поле").min(8, "Минимум 8 символов").max(16, "Максимально 16 символов"),
   })
@@ -35,17 +35,26 @@ const schema = yup
         email: "",
         password: "",
         name: "",
-        surname: "",
-        city: "",
-        tel: ""
+        userCity: "",
+        phoneNumber: ""
       }
     });
   
 
   const navigate = useNavigate()
+  const [registerUser, { data }] = useRegisterUserMutation()
   const onSubmit: SubmitHandler<IRegisterForm> = (data) => {
-      navigate("/main")
+    registerUser ({ 
+      name: data.name, 
+      email: data.email, 
+      user_city: data.userCity, 
+      phone_number: data.phoneNumber, 
+      password: data.password 
+    })
+    // navigate("/main")
   }
+
+  console.log("User data: ", data)
 
 return(
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -61,7 +70,7 @@ return(
         errorMessage={errors.name?.message}/>
     )}
     />
-    <Controller
+    {/* <Controller
     control={control}
     name="surname"
     render={({ field }) => (
@@ -72,29 +81,29 @@ return(
         isError={errors.surname ? true : false}
         errorMessage={errors.surname?.message}/>
     )}
-    />
+    /> */}
     <Controller
     control={control}
-    name="city"
+    name="userCity"
     render={({ field }) => (
         <Input 
         type={"text"} 
         placeholder={"Ваш город"}
         {...field} 
-        isError={errors.city ? true : false}
-        errorMessage={errors.city?.message}/>
+        isError={errors.userCity ? true : false}
+        errorMessage={errors.userCity?.message}/>
     )}
     />
     <Controller
     control={control}
-    name="tel"
+    name="phoneNumber"
     render={({ field }) => (
         <Input 
         type={"text"} 
         placeholder={"Ваш номер"}
         {...field} 
-        isError={errors.tel ? true : false}
-        errorMessage={errors.tel?.message}/>
+        isError={errors.phoneNumber ? true : false}
+        errorMessage={errors.phoneNumber?.message}/>
     )}
     />
     <Controller

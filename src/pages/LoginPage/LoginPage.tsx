@@ -1,4 +1,4 @@
-import { Input, Button, Heading, RegistrationInfo } from "../../components/UI";
+import { Heading, RegistrationInfo } from "../../components/UI";
 import { Link } from "react-router-dom";
 import { SCLoginPage } from "./LoginPage.styled";
 import LoginForm from "../../components/LoginForm";
@@ -10,7 +10,7 @@ export const LoginPage = () => {
       <LoginForm/>
       <Link to="/registration">Забыли пароль?</Link>
       <RegistrationInfo 
-      // linkText={<Link to="/registration">Зарегистрироваться</Link>} 
+      navigatePath="/registration"
       linkText={"Зарегистрироваться"} 
       hasAccountText={"У вас нет аккаунта?"} 
       authWithText={"Войти с помощью:"}/>

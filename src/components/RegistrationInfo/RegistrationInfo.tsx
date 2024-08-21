@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
 import { Paragraph, Span } from "../UI";
 
-interface IREgistrationInfo {
+interface IRegistrationInfo {
     linkText: string,
     hasAccountText: string,
     authWithText: string,
+    navigatePath: string,
 }
 
-const RegistrationInfo = ({ linkText, hasAccountText, authWithText }:IREgistrationInfo) => {
+const RegistrationInfo = ({ linkText, hasAccountText, authWithText, navigatePath }:IRegistrationInfo) => {
 
     return(
         <div className="registration">
             <Span>
-                {hasAccountText} <Link to="/registration">{linkText}</Link>
+                {hasAccountText} <Link to={navigatePath}>{linkText}</Link>
             </Span>
             <Paragraph>{authWithText}</Paragraph>
             <div className="icons-wrapper">

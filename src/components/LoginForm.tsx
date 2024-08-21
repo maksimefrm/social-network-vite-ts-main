@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Button, Input } from "./UI"
 import { useNavigate } from "react-router-dom"
+import { useLoginUserMutation } from "../Store/api/authApi"
 
 interface ILoginForm {
     email: string,
@@ -30,9 +31,13 @@ const LoginForm = () => {
     });
 
     const navigate = useNavigate()
+    const [loginUser, { data }] = useLoginUserMutation()
+
     const onSubmit: SubmitHandler<ILoginForm> = (data) => {
-        navigate("/main")
+      loginUser({ email: data.email, password: data.password})
+        // navigate("/main")
     }
+    console.log("User data:", data)
   
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
