@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { ICreatePostsPayload, ICreatePostsResponce, IDeletePostsResponce, IGetAllPostsResponce, IGetPostByIdResponce, IUpdatePostsPayload, IUpdatePostsResponce } from './types'
-import { baseUrl } from '../../utils/baseUrl'
+import { baseUrl } from '../../utils/constants'
 
 export const postApi = createApi({
   reducerPath: 'postApi',

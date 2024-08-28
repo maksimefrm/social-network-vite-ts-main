@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { Paragraph, Span } from "../UI";
 import { SignInButton } from "@clerk/clerk-react";
-
-const YANDEX_CLIENT_ID = "d8d071002ccd49aa9d8973f60e33d200";
-const REDIRECT_URI = "http://localhost:5173/main";
+import { YANDEX_CLIENT_ID } from "../../utils/constants";
+import { REDIRECT_URI } from "../../utils/constants";
 
 const YANDEX_AUTH_URL = `https://oauth.yandex.ru/authorize?response_type=token&client_id=${YANDEX_CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
 
