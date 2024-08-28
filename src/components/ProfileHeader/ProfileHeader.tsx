@@ -1,5 +1,13 @@
+import { useUser } from "@clerk/clerk-react";
+import { useGetUserQuery } from "../../Store/api/authApi";
 
 const ProfileHeader = () => {
+  const userId = localStorage.getItem("userId");
+  const { data } = useGetUserQuery(userId!);
+  const { user, isSignedIn } = useUser();
+
+  console.log("user", user);
+
     return(
         <div className="ProfileHeader">
         <svg
@@ -17,7 +25,7 @@ const ProfileHeader = () => {
         <div className="user__block">
           <img src="./img/users/denis-frolov.jpeg" alt="Denis Frolov" />
           <div className="user__description">
-            <h1 className="user__name">Денис Фролов</h1>
+            <h1 className="user__name">{isSignedIn ? user.fullName : data?.message.name}</h1>
             <div className="user__info">
               <div className="parameter">
                 <span className="key">Друзья</span>

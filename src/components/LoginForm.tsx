@@ -4,6 +4,8 @@ import * as yup from "yup"
 import { Button, Input } from "./UI"
 import { useNavigate } from "react-router-dom"
 import { useLoginUserMutation } from "../Store/api/authApi"
+import { useUser } from "@clerk/clerk-react"
+import { useEffect } from "react"
 
 interface ILoginForm {
     email: string,
@@ -31,13 +33,23 @@ const LoginForm = () => {
     });
 
     const navigate = useNavigate()
-    const [loginUser, { data }] = useLoginUserMutation()
+    const [loginUser, { data: loginData }] = useLoginUserMutation() //* даем значение ":"
+    const { user } = useUser()
+    const userId = localStorage.getItem('userId')
+
+    useEffect(()=>{
+      if (user || userId ) {
+        navigate("/main")
+      }
+    }, [user, userId])
 
     const onSubmit: SubmitHandler<ILoginForm> = (data) => {
       loginUser({ email: data.email, password: data.password})
-        // navigate("/main")
+      localStorage.setItem("userId", JSON.stringify(loginData?.user_id))
     }
-    console.log("User data:", data)
+
+
+
   
     return (
       <form onSubmit={handleSubmit(onSubmit)}>

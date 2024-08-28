@@ -3,7 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Button, Input } from "./UI"
 import { useNavigate } from "react-router-dom"
-import { useLoginUserMutation, useRegisterUserMutation } from "../Store/api/authApi"
+import { useRegisterUserMutation } from "../Store/api/authApi"
+import { useUser } from "@clerk/clerk-react"
+import { useEffect } from "react"
 
 interface IRegisterForm {
     name: string,
@@ -16,7 +18,6 @@ interface IRegisterForm {
 const schema = yup
   .object({
     name: yup.string().required("Обязательное поле"),
-    surname: yup.string().required("Обязательное поле"),
     userCity: yup.string().required("Обязательное поле"),
     phoneNumber: yup.string().required("Обязательное поле"),
     email: yup.string().email("Введите почту в правильном формате").required("Обязательное поле"),
@@ -43,6 +44,15 @@ const schema = yup
 
   const navigate = useNavigate()
   const [registerUser, { data }] = useRegisterUserMutation()
+  const { user } = useUser()
+  const userId = localStorage.getItem('userId')
+
+  useEffect(()=>{
+    if (user || userId ) {
+      navigate("/main")
+    }
+  }, [user, userId])
+
   const onSubmit: SubmitHandler<IRegisterForm> = (data) => {
     registerUser ({ 
       name: data.name, 
@@ -51,10 +61,8 @@ const schema = yup
       phone_number: data.phoneNumber, 
       password: data.password 
     })
-    // navigate("/main")
+    navigate("/")
   }
-
-  console.log("User data: ", data)
 
 return(
     <form onSubmit={handleSubmit(onSubmit)}>

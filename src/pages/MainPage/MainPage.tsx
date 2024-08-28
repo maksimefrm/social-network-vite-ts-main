@@ -1,8 +1,12 @@
 import { Navbar, List, WhatsNew, History, Post, PostRepost } from "../../components/UI";
 import { Header } from "../../components/UI/Header/Header";
+import { useGetAllPostQuery } from "../../Store/api/postApi";
 import { SCMainPage } from "./MainPage.styled";
 
 export const MainPage = () => {
+  const { data } = useGetAllPostQuery(null);
+  console.log('data', data)
+
   return (
     <SCMainPage>
       <Header/>
