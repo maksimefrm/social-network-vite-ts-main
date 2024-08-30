@@ -5,18 +5,18 @@ export const YANDEX_CLIENT_SECRET = import.meta.env.VIRE_CLERK_YANDEX_CLIENT_SEC
 export const REDIRECT_URI = "http://localhost:5173/main";
 
 
-if (!baseUrl) {
-    throw new Error("Missing baseUrl")
-}
-if (!PUBLISHABLE_KEY) {
-    throw new Error("Missing Publishable Key")
-}
-if (!YANDEX_CLIENT_ID) {
-    throw new Error("Missing YANDEX_CLIENT_ID")
-}
+// if (!baseUrl) {
+//     throw new Error("Missing baseUrl")
+// }
+// if (!PUBLISHABLE_KEY) {
+//     throw new Error("Missing Publishable Key")
+// }
+// if (!YANDEX_CLIENT_ID) {
+//     throw new Error("Missing YANDEX_CLIENT_ID")
+// }
 // if (!YANDEX_CLIENT_SECRET) {
 //     throw new Error("Missing YANDEX_CLIENT_SECRET")
 // }
-if (!REDIRECT_URI) {
-    throw new Error("Missing REDIRECT_URI")
-}
+// if (!REDIRECT_URI) {
+//     throw new Error("Missing REDIRECT_URI")
+// }

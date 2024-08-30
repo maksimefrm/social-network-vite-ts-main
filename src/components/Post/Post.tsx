@@ -1,52 +1,43 @@
+interface IPostProps {
+  name: string;
+  date: any;
+  postText: string;
+  photos: [
+    {
+      photo_id: number;
+      photo_url: string;
+    }
+  ]
+}
 
-const Post = () => {
-    return(
-        <div className="Post _liked _marked">
-        <div className="UserElem">
-          <img src="./img/users/aleksandr-maykov.jpeg" alt="User" />
-          <div className="user__description">
-            <a href="#" className="main__text">
-              Александр Майков
-            </a>
-            <p className="secondary__text">Сегодня 9:37</p>
-          </div>
+const Post = ({ date, name, postText, photos }: IPostProps) => {
+  return (
+    <div className="Post _liked _marked">
+      <div className="UserElem">
+        <img src="./img/users/aleksandr-maykov.jpeg" alt="User" />
+        <div className="user__description">
+          <a href="#" className="main__text">
+            {name}
+          </a>
+          <p className="secondary__text">{date}</p>
         </div>
-        <p className="Post__text">Момент умиротворения и спокойствия</p>
-        <div className="media-container">
-          <img
-            className="media__item"
-            src="./img/post/nature-1.png"
-            alt="Post Item"
-          />
-          <img
-            className="media__item"
-            src="./img/post/nature-2.png"
-            alt="Post Item"
-          />
-          <img
-            className="media__item"
-            src="./img/post/nature-3.png"
-            alt="Post Item"
-          />
-          <img
-            className="media__item"
-            src="./img/post/nature-4.png"
-            alt="Post Item"
-          />
-          <img
-            className="media__item"
-            src="./img/post/nature-5.png"
-            alt="Post Item"
-          />
-          <img
-            className="media__item"
-            src="./img/post/nature-6.png"
-            alt="Post Item"
-          />
-        </div>
+      </div>
+      <p className="Post__text">{postText}</p>
+      <div className="media-container">
+        {photos
+          ? photos.map((photo) => (
+              <img
+                key={photo.photo_id}
+                className="media__item"
+                src={photo.photo_url}
+                alt="Post Item"
+              />
+            ))
+          : ""}
+      </div>
         <div className="PostControls">
           <div className="icon-wrapper like">
-            <span className="count likes-count">-500</span>
+            <span className="count likes-count">156</span>
             <svg
               className="icon icon-like"
               viewBox="0 0 23 23"

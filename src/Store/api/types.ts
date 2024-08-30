@@ -48,12 +48,12 @@ export interface IRegisterUserPayload {
 //? POSTS
 
 export interface IGetPostByIdResponce {
-  status: string;
+  status: number;
   message: IPost
 }
 
 export interface IGetAllPostsResponce {
-  status: string;
+  status: number;
   message: IPost[]
 }
 

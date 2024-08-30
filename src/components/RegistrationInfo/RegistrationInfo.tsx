@@ -3,12 +3,8 @@ import { Paragraph, Span } from "../UI";
 import { SignInButton } from "@clerk/clerk-react";
 import { YANDEX_CLIENT_ID } from "../../utils/constants";
 import { REDIRECT_URI } from "../../utils/constants";
-
-const YANDEX_AUTH_URL = `https://oauth.yandex.ru/authorize?response_type=token&client_id=${YANDEX_CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
-
-const handleLogin = () => {
-  window.location.href = YANDEX_AUTH_URL;
-};
+import { useGetTokenMutation } from "../../Store/api/yandexApi";
+import { useEffect } from "react";
 
 interface IRegistrationInfo {
   linkText: string;
@@ -16,6 +12,45 @@ interface IRegistrationInfo {
   authWithText: string;
   navigatePath: string;
 }
+
+//* yandex 1 способ
+
+const YANDEX_AUTH_URL = `https://oauth.yandex.ru/authorize?response_type=token&client_id=${YANDEX_CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
+
+const handleLogin = () => {
+  window.location.href = YANDEX_AUTH_URL;
+};
+
+//* yandex 2 способ
+
+const YandexAuth = () => {
+  const [getToken, { data: tokenData, isLoading }] = useGetTokenMutation();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+      getToken({ code });
+    }
+  }, [getToken]);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      {!tokenData ? (
+        <a href={YANDEX_AUTH_URL}>
+        <Link className="reg__link yandex-link" to="#" onClick={handleLogin}>
+          <img src="./img/icons/yandex.svg" alt=".ru" />
+        </Link></a>
+      ) : (
+        <div>Токен: {tokenData.access_token}</div>
+      )}
+    </div>
+  );
+};
+
 
 const RegistrationInfo = ({
   linkText,
@@ -37,9 +72,10 @@ const RegistrationInfo = ({
             </Link>
           }
         />
-        <Link className="reg__link yandex-link" to="#" onClick={handleLogin}>
+        <YandexAuth />
+        {/* <Link className="reg__link yandex-link" to="#" onClick={handleLogin}>
           <img src="./img/icons/yandex.svg" alt=".ru" />
-        </Link>
+        </Link> */}
         <Link className="reg__link mail-ru-link" to="#">
           <img src="./img/icons/mail-ru.svg" alt="Mail.ru" />
         </Link>
