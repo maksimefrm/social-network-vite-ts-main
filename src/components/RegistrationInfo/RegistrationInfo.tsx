@@ -73,9 +73,6 @@ const RegistrationInfo = ({
           }
         />
         <YandexAuth />
-        {/* <Link className="reg__link yandex-link" to="#" onClick={handleLogin}>
-          <img src="./img/icons/yandex.svg" alt=".ru" />
-        </Link> */}
         <Link className="reg__link mail-ru-link" to="#">
           <img src="./img/icons/mail-ru.svg" alt="Mail.ru" />
         </Link>

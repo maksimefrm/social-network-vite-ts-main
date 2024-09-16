@@ -3,6 +3,7 @@ export const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 export const YANDEX_CLIENT_ID = "d8d071002ccd49aa9d8973f60e33d200"
 export const YANDEX_CLIENT_SECRET = import.meta.env.VIRE_CLERK_YANDEX_CLIENT_SECRET
 export const REDIRECT_URI = "http://localhost:5173/main";
+export const jsonPlaceholderUrl = "https://jsonplaceholder.typicode.com"
 
 
 // if (!baseUrl) {

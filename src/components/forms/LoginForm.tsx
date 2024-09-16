@@ -1,9 +1,9 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { Button, Input } from "./UI"
+import { Button, Input } from "../UI"
 import { useNavigate } from "react-router-dom"
-import { useLoginUserMutation } from "../Store/api/authApi"
+import { useLoginUserMutation } from "../../Store/api/authApi"
 import { useUser } from "@clerk/clerk-react"
 import { useEffect } from "react"
 
@@ -34,18 +34,26 @@ const LoginForm = () => {
 
     const navigate = useNavigate()
     const [loginUser, { data: loginData }] = useLoginUserMutation() //* даем значение ":"
-    const { user } = useUser()
+    const { isSignedIn } = useUser()
     const userId = localStorage.getItem('userId')
 
     useEffect(()=>{
-      if (user || userId ) {
+      if (loginData?.message) {
+        localStorage.removeItem("userId")
+        alert(loginData.message)
+      } if (loginData?.user_id) {
+        localStorage.setItem("userId", JSON.stringify(loginData?.user_id))
         navigate("/main")
       }
-    }, [user, userId])
+
+      if (isSignedIn || userId ) {
+        navigate("/main")
+      }
+
+    }, [isSignedIn, loginData, userId])
 
     const onSubmit: SubmitHandler<ILoginForm> = (data) => {
-      loginUser({ email: data.email, password: data.password})
-      localStorage.setItem("userId", JSON.stringify(loginData?.user_id))
+      loginUser({email: data.email, password: data.password})
     }
 
 

@@ -7,18 +7,18 @@ export interface IUser {
   city: string;
 }
 export interface IPost {
-    main_text: string;
-    user_id: number;
-    id: number;
-    reg_date: Date;
-    user_fk: IUser;
-    photos: [
-      {
-        photo_id: number;
-        photo_url: string;
-      }
-    ];
-    comments: string[];
+  main_text: string;
+  user_id: number;
+  id: number;
+  reg_date: Date;
+  user_fk: IUser;
+  photos: [
+    {
+      photo_id: number;
+      photo_url: string;
+    }
+  ];
+  comments: string[];
 }
 
 export interface IGetUserResponce {
@@ -27,8 +27,9 @@ export interface IGetUserResponce {
 }
 
 export interface ILoginUserResponce {
-  status: number;
+  status: 1 | 0;
   user_id: number;
+  message: string;
 }
 
 export interface ILoginUserPayload {
@@ -49,12 +50,12 @@ export interface IRegisterUserPayload {
 
 export interface IGetPostByIdResponce {
   status: number;
-  message: IPost
+  message: IPost;
 }
 
 export interface IGetAllPostsResponce {
   status: number;
-  message: IPost[]
+  message: IPost[];
 }
 
 export interface ICreatePostsResponce {
@@ -63,7 +64,7 @@ export interface ICreatePostsResponce {
 }
 
 export interface ICreatePostsPayload {
-  user_id: number;
+  user_id: number | undefined;
   main_text: string;
 }
 
@@ -77,3 +78,28 @@ export interface IUpdatePostsPayload {
 }
 
 export interface IDeletePostsResponce extends IUpdatePostsResponce {}
+
+export interface ISubscriber {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}
+export type IGetSubscribersResponce = ISubscriber[]

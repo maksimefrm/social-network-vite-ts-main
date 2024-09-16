@@ -1,4 +1,4 @@
-import RegisterForm from "../../components/RegisterForm";
+import RegisterForm from "../../components/forms/RegisterForm";
 import { Heading, RegistrationInfo } from "../../components/UI";
 import { SCRegistrationPage } from "./RegistrartionPage.styled";
 

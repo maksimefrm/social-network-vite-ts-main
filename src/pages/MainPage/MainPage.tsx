@@ -5,31 +5,36 @@ import { SCMainPage } from "./MainPage.styled";
 
 export const MainPage = () => {
   const { data, isLoading } = useGetAllPostQuery(null);
-  console.log('data', data)
+  // console.log('data', data)
 
   return (
     <SCMainPage>
-      <Header/>
+      <Header />
       <aside className="LeftSide">
-        <Navbar/>
-        <List listType="subscribes"/>
+        <Navbar />
+        <List listType="subscribes" />
       </aside>
       <main className="Main">
-        <WhatsNew/>
-        <History/>
+        <WhatsNew />
+        <History />
         {isLoading && <h1>Loading...</h1>}
-        {data ? data.message.map((post) => (
-  <Post
-    name={post.user_fk.name}
-    date={post.reg_date}
-    postText={post.main_text}
-    photos={post.photos}
-  />
-)) : <h1>Постов нет</h1>}
+        {data ? (
+          data.message.map((post) => (
+            <Post
+              name={post.user_fk.name}
+              date={post.reg_date}
+              postText={post.main_text}
+              photos={post.photos}
+              postId={post.id}
+            />
+          ))
+        ) : (
+          <h1>Постов нет</h1>
+        )}
       </main>
       <aside className="RightSide">
-        <List listType="closeFriends"/>
-        <List listType={"music"}/>  
+        <List listType="closeFriends" />
+        <List listType={"music"} />
       </aside>
     </SCMainPage>
   );

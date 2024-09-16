@@ -1,14 +1,14 @@
 
+
+
 interface FriendsItemProps {
-    imgUrl: string,
-    alt: string,
-    text: string,
+    text: string
 }
 
-const FriendsItem = ({imgUrl, alt, text}: FriendsItemProps) => {
+const FriendsItem = ({text}: FriendsItemProps) => {
     return (
         <div className="friend">
-            <img src={imgUrl} alt={alt} />
+            <img src="./img/music/album-5.png" alt="Friend" />
             <span className="friend__name">{text}</span>
         </div>
     )

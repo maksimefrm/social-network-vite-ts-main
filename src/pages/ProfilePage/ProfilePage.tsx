@@ -6,19 +6,29 @@ import {
   ProfileHeader,
   PostRepost,
   Post,
-  WhatsNew,
-  UserPosts,
   Bio,
+  Heading,
 } from "../../components/UI";
 import { Header } from "../../components/UI/Header/Header";
-import { useGetUserQuery } from "../../Store/api/authApi";
 import { SCProfilePage } from "./ProfilePage.styled";
+import { useGetAllPostQuery } from "../../Store/api/postApi";
+import { IPost } from "../../Store/api/types";
+import { CreatePostForm } from "../../components/forms/CreatePost";
 
 export const ProfilePage = () => {
+  const { data, isLoading } = useGetAllPostQuery(null);
   const userId = localStorage.getItem("userId");
-  const { data, isLoading, isError, error, isSuccess } = useGetUserQuery(
-    userId!
-  );
+
+  const userIdNumber = userId ? Number(userId) : undefined;
+  const posts: IPost[] = data?.message || [];
+
+  const filterPostsByUserId = (posts: IPost[], userId: number) => {
+    return posts.filter((post) => post.user_id === userId);
+  };
+
+  const filteredPosts =
+    userIdNumber !== undefined ? filterPostsByUserId(posts, userIdNumber) : [];
+
   const { user, isSignedIn } = useUser();
 
   console.log("user", user);
@@ -40,10 +50,40 @@ export const ProfilePage = () => {
       </aside>
       <ProfileHeader />
       <main className="Main">
-        <WhatsNew />
-        <UserPosts />
-        <Post />
-        <PostRepost />
+        <CreatePostForm/>
+        <Heading variant={"h2"} text={"Мои посты"} />
+        <br />
+        <hr />
+        <br />
+        {filteredPosts ? (
+          filteredPosts.map((post) => (
+            <Post
+              name={post.user_fk.name}
+              date={post.reg_date}
+              postText={post.main_text}
+              photos={post.photos}
+              postId={post.id}
+              isOwner={true}
+            />
+          ))
+        ) : (
+          <Heading variant={"h2"} text={"У вас нет постов"} />
+        )}
+        {/* {isLoading && <h1>Loading...</h1>}
+        {data ? (
+          data.message.map((post) => (
+            <Post
+              name={post.user_fk.name}
+              date={post.reg_date}
+              postText={post.main_text}
+              photos={post.photos}
+              postId={post.id}
+            />
+          ))
+        ) : (
+          <h1>Постов нет</h1>
+        )} */}
+        {/* <PostRepost /> */}
       </main>
       <aside className="RightSide">
         <Bio />

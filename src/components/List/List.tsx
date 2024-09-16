@@ -1,3 +1,5 @@
+import { ISubscriber } from "../../Store/api/types"
+import { useGetSubscriberByIdQuery } from "../../Store/api/userApi"
 import { Heading } from "../UI"
 import { ListData } from "./data"
 import ListItem from "./ListItem"
@@ -10,25 +12,27 @@ interface ListProps {
 }
 
 const List = ({listType}: ListProps) => {
+const { data } = useGetSubscriberByIdQuery(null)
+
 const renderList = () => {
   switch (listType) {
     case "subscribes":
-      return(
+      return (
         <div className="List">
-        <div className="List__title">
-          <Heading variant={"h2"} text={"Подписки"}/>
-          <span className="count">{subscribes ? subscribes.length : ""}</span>
+          <div className="List__title">
+            <Heading variant={"h2"} text={"Подписки"} />
+            <span className="count">{subscribes ? subscribes.length : ""}</span>
+          </div>
+          {data && data.map((UserElem: ISubscriber) => (
+            <ListItem
+              mainText={UserElem.username}
+              secondaryText={UserElem.name}
+              key={UserElem.id}
+            />
+          ))}
         </div>
-        {subscribes && subscribes.map((musicItem) => (
-          <ListItem 
-            imgUrl={musicItem.imgUrl}
-            alt={musicItem.alt}
-            mainText={musicItem.mainText}
-            secondaryText={musicItem.secondaryText}
-            badgeNumber={musicItem.badgeNumber}/>
-        ))}
-      </div>
       )
+
     case "closeFriends":
       return(
         <div className="List">

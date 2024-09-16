@@ -1,9 +1,9 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { Button, Input } from "./UI"
+import { Button, Input } from "../UI"
 import { useNavigate } from "react-router-dom"
-import { useRegisterUserMutation } from "../Store/api/authApi"
+import { useRegisterUserMutation } from "../../Store/api/authApi"
 import { useUser } from "@clerk/clerk-react"
 import { useEffect } from "react"
 
@@ -43,15 +43,24 @@ const schema = yup
   
 
   const navigate = useNavigate()
-  const [registerUser, { data }] = useRegisterUserMutation()
-  const { user } = useUser()
+  const [registerUser, { data: registrationData }] = useRegisterUserMutation()
+  const { isSignedIn } = useUser()
   const userId = localStorage.getItem('userId')
 
   useEffect(()=>{
-    if (user || userId ) {
+    if (registrationData?.message) {
+      localStorage.removeItem("userId")
+      alert(registrationData.message)
+    } if (registrationData?.user_id) {
+      localStorage.setItem("userId", JSON.stringify(registrationData?.user_id))
       navigate("/main")
     }
-  }, [user, userId])
+
+    if (isSignedIn || userId ) {
+      navigate("/main")
+    }
+
+  }, [isSignedIn, registrationData, userId])
 
   const onSubmit: SubmitHandler<IRegisterForm> = (data) => {
     registerUser ({ 
@@ -61,7 +70,6 @@ const schema = yup
       phone_number: data.phoneNumber, 
       password: data.password 
     })
-    navigate("/")
   }
 
 return(

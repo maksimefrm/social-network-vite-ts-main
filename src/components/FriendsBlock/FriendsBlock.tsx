@@ -1,24 +1,23 @@
-import { ListData } from "../List/data"
+import { useGetSubscribersQuery } from "../../Store/api/userApi"
+// import { ListData } from "../List/data"
 import { Heading } from "../UI"
 import FriendsItem from "./FriendsItem"
 
-const { friends } = ListData
 
 const FriendsBlock = () => {
+  const { data } = useGetSubscribersQuery(null)
     return (
         <div className="FriendsBlock">
         <div className="Friends__title">
           <Heading variant={"h2"} text={"Друзья"} />
           <span className="count">
-            {friends.length}
+            {data?.length}
           </span>
         </div>
         <div className="Friends__wrapper">
-        {friends && friends.map((userElem) => (
+        {data && data.map((friends) => (
           <FriendsItem 
-          imgUrl={userElem.imgUrl} 
-          alt={userElem.alt} 
-          text={userElem.text}/>
+          text={friends.name}/>
         ))}
         </div>
       </div>
